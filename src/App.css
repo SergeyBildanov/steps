@@ -1,0 +1,50 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.steps-form{
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  width: 500px;
+  font-size: 20px;
+}
+.wrapper{
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.input{
+  margin-top: 10px;
+  box-sizing: border-box;
+  width:200px;
+  height: 60px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+.submit{
+  box-sizing: border-box;
+  border: solid 2px black;
+  height: 60px;
+}
+
+.row{
+  display:flex;
+  justify-content: space-between;
+  height: 50px;
+  font-size: 24px;
+}
+.link{
+  width: 32px;
+  height: 32px;
+}
+.buttons{
+  width: 70px;
+  display: flex;
+  justify-content: space-between;
+}
