@@ -1,11 +1,15 @@
-export default function StepsRow({date, steps, onDelete}){
+export default function StepsRow({date, steps, onDelete, id}){
     const options = { 
         year: '2-digit', 
         month: '2-digit', 
         day: '2-digit' };
-    const dateString = date.toLocaleDateString("en-US", options).replace(/\//g, ".");
+    const dateFormat = (str) => {
+            let parts = str.split(".");
+            return [parts[1], parts[0], parts[2]].join(".");
+    }
+    const dateString = dateFormat(date.toLocaleDateString("en-US", options).replace(/\//g, "."));
     return(
-        <div className="row">
+        <div className="row" data-id={id}>
             <div className="rowDate">{dateString}</div>
             <div className="rowSteps">{steps}</div>
             <div className="buttons">

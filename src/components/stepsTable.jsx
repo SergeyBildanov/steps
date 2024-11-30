@@ -7,7 +7,7 @@ export default function StepsTable({rows, onDelete}){
         <div>
             {rows.map(
             (item) => {
-                return <StepsRow date={item.date} steps={item.steps} key={i++} onDelete={onDelete}/>
+                return <StepsRow date={item.date} steps={item.steps} key={item.id} onDelete={onDelete} id={item.id}/>
             }
         )}
         </div>

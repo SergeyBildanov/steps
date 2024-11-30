@@ -7,13 +7,19 @@ import StepsTable from './components/stepsTable'
 
 function App() {
   const [rowsArray, setRows] = useState([]);
+  const dateFormat = (str) => {
+    let parts = str.split(".");
+    return [parts[1], parts[0], parts[2]].join(".");
+  }
   const submitHandler = e => {
     e.preventDefault();
     const elements = e.target.elements;
-    const date = new Date(elements.date.value);
+    const date = new Date(dateFormat(elements.date.value));
+    console.log(date)
     const formData = {
       date: date,
-      steps: elements.steps.value
+      steps: elements.steps.value,
+      id: rowsArray.length + 1
     }
     rowsArray.push(formData);
     rowsArray.sort((a,b)=>{
@@ -23,13 +29,16 @@ function App() {
   }
   const deleteHandler = (e) => {
     e.preventDefault();
+    let newArray = [...rowsArray];
     const row = e.target.closest(".row");
     const newDate = new Date(row.querySelector(".rowDate").textContent)
     const formData = {
       date: newDate,
-      steps: row.querySelector(".rowSteps").textContent
+      steps: row.querySelector(".rowSteps").textContent,
+      id: parseInt(row.dataset.id),
     }
-    const array = rowsArray.filter((item)=>{(item.date !== formData.date && item.steps !== formData.steps)})
+    let array = newArray.filter(item=>{
+      return((item.id !== formData.id))});
     setRows([...array]) 
   }
   return (
