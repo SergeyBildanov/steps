@@ -15,17 +15,30 @@ function App() {
     e.preventDefault();
     const elements = e.target.elements;
     const date = new Date(dateFormat(elements.date.value));
-    console.log(date)
-    const formData = {
+    if(JSON.stringify(date) === "null"){
+      alert("Date input error, try again!")
+    }
+    else{
+      const formData = {
       date: date,
-      steps: elements.steps.value,
+      steps: parseInt(elements.steps.value),
       id: rowsArray.length + 1
+    }
+    for(let item of rowsArray){
+      if((item.date - formData.date) === 0){
+        item.steps += formData.steps;
+        setRows([...rowsArray])
+        e.target.reset();
+        return;
+      }
     }
     rowsArray.push(formData);
     rowsArray.sort((a,b)=>{
       return a.date - b.date;
     })
     setRows([...rowsArray])
+    e.target.reset();
+    }
   }
   const deleteHandler = (e) => {
     e.preventDefault();
@@ -34,7 +47,7 @@ function App() {
     const newDate = new Date(row.querySelector(".rowDate").textContent)
     const formData = {
       date: newDate,
-      steps: row.querySelector(".rowSteps").textContent,
+      steps: parseInt(row.querySelector(".rowSteps").textContent),
       id: parseInt(row.dataset.id),
     }
     let array = newArray.filter(item=>{
