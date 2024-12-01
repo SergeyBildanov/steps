@@ -15,13 +15,14 @@ function App() {
     e.preventDefault();
     const elements = e.target.elements;
     const date = new Date(dateFormat(elements.date.value));
-    if(JSON.stringify(date) === "null"){
-      alert("Date input error, try again!")
+    const steps = parseInt(elements.steps.value);
+    if(JSON.stringify(date) === "null" || JSON.stringify(steps) === "null"){
+      alert("Input error, try again!")
     }
     else{
       const formData = {
       date: date,
-      steps: parseInt(elements.steps.value),
+      steps: steps,
       id: rowsArray.length + 1
     }
     for(let item of rowsArray){
@@ -68,12 +69,3 @@ function App() {
 }
 
 export default App
-
-/*
-{
-      rowsArray?rowsArray.map(
-        (item, index) => {
-            return <StepsRow date={item.date} steps={item.steps} key={index}/>
-        }
-    ):null 
-    } */
